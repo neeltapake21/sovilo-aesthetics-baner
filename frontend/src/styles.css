@@ -28,8 +28,6 @@ body {
   100% {
     transform: translateY(0);
   }
-}
-
-.bounce-once {
+}.bounce-once {
   animation: bounce-once 0.6s ease-out;
 }
