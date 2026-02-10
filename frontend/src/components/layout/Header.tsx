@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { CalendarDays, Menu, Phone } from "lucide-react";
 import { useState } from "react";
+import { useAuth } from "../../contexts/AuthContext";
 
 const navItems = [
   { to: "/", label: "Home" },
@@ -54,6 +55,9 @@ export function Header() {
             <CalendarDays className="h-4 w-4" />
             Book Now
           </Link>
+
+          {/* Auth buttons */}
+          <AuthButtons />
         </div>
 
         <button
@@ -93,10 +97,44 @@ export function Header() {
               <CalendarDays className="h-4 w-4" />
               Book Appointment
             </Link>
+            <div className="mt-2 flex gap-2">
+              <Link to="/signin" onClick={() => setOpen(false)} className="px-3 py-2">
+                Sign in
+              </Link>
+              <Link to="/signup" onClick={() => setOpen(false)} className="px-3 py-2">
+                Sign up
+              </Link>
+            </div>
           </nav>
         </div>
       )}
     </header>
+  );
+}
+
+function AuthButtons() {
+  const { user, signout } = useAuth();
+
+  if (user) {
+    return (
+      <div className="flex items-center gap-2">
+        <span className="text-sm">{user.email || "Account"}</span>
+        <button onClick={signout} className="rounded border px-3 py-1 text-sm">
+          Logout
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex items-center gap-2">
+      <Link to="/signin" className="text-sm font-medium text-gray-700 hover:text-primary">
+        Sign in
+      </Link>
+      <Link to="/signup" className="inline-flex items-center gap-2 rounded-full bg-primary px-3 py-1.5 text-sm font-semibold text-white">
+        Sign up
+      </Link>
+    </div>
   );
 }
 
