@@ -16,14 +16,14 @@ class UserCreate(UserBase):
 
 
 class UserPublic(UserBase):
-    id: str = Field(..., alias="_id")
+    id: str
     is_email_verified: bool = False
     two_factor_enabled: bool = False
     created_at: Optional[datetime] = None
 
 
 class UserInDB(UserBase):
-    _id: Optional[str]
+    id: Optional[str] = None
     hashed_password: str
     is_email_verified: bool = False
     two_factor_enabled: bool = True

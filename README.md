@@ -127,3 +127,25 @@ The contact/appointment form can store submissions in a **Google Sheet** as your
 - Configure HTTPS (TLS) for both frontend and backend.
 - Add Google Analytics, sitemap, `robots.txt`, and schema markup as per the SEO section in the spec.
 
+
+## Payment Integration (Razorpay UPI)
+
+This project includes a Razorpay UPI integration (checkout popup flow) and server-side verification.
+
+- Backend:
+   - `app/utils/razorpay_client.py` — Razorpay SDK wrapper (order creation, signature & webhook verification, fetch payment details).
+   - `app/routes/payments.py` — Endpoints: `/api/payment/create-order`, `/api/payment/verify`, `/api/payment/webhook`.
+   - Run `python -m app.scripts.create_payment_indexes` to create indexes for the `payments` collection.
+
+- Frontend:
+   - `frontend/src/components/payment/PaymentPopup.tsx` — Popup component that opens Razorpay checkout configured for UPI (QR, apps, manual VPA entry). Use this component in your booking flow to open in-place (no redirect).
+   - Environment: set `VITE_RAZORPAY_KEY_ID` in `frontend/.env`.
+
+- Environment variables (examples in `backend/.env.example` and `frontend/.env.example`).
+
+- Testing:
+   - Use UPI test VPAs `success@razorpay` (succeeds) and `failure@razorpay` (fails).
+   - Configure Razorpay webhook URL to `https://YOUR_DOMAIN/api/payment/webhook` and set `RAZORPAY_WEBHOOK_SECRET` in the backend env.
+
+If you want, I can wire the popup into the existing booking form component and run the index-creation script now.
+

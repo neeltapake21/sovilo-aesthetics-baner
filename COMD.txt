@@ -1,0 +1,9 @@
+BACKEND:
+
+cd c:\Sovilo\backend
+.venv\Scripts\activate
+uvicorn app.main:app --reload
+
+FRONTEND:
+cd c:\Sovilo
+npm run dev

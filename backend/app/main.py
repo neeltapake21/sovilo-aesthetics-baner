@@ -15,11 +15,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-from app.routes.auth import router as auth_router
-
-app.include_router(auth_router, prefix="/api/auth", tags=["auth"])
-
-
 @app.get("/health")
 async def health_check():
     return {"status": "ok"}
@@ -27,24 +22,19 @@ async def health_check():
 
 @app.post("/api/appointments")
 async def create_appointment():
-    # TODO: implement MongoDB insert + email sending
     return {"message": "Appointment endpoint stub"}
 
 
 @app.post("/api/contact")
 async def contact():
-    # TODO: implement email sending
     return {"message": "Contact endpoint stub"}
 
 
 @app.get("/api/services")
 async def list_services():
-    # TODO: return structured services data or fetch from DB
     return {"services": []}
 
 
 @app.get("/api/reviews")
 async def list_reviews():
-    # TODO: return curated reviews
     return {"reviews": []}
-

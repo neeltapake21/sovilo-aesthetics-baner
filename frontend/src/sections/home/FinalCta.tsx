@@ -12,7 +12,7 @@ export function FinalCta() {
           to="/contact"
           className="mt-8 inline-flex items-center justify-center rounded-full bg-white px-10 py-3 text-base font-semibold text-primary shadow-lg transition-transform hover:scale-105"
         >
-          Book Free Consultation
+          Book Consultation
         </Link>
       </div>
     </section>
