@@ -1,5 +1,9 @@
 {
   "rewrites": [
+    { "source": "/api/health", "destination": "/api/health" },
+    { "source": "/api/contact", "destination": "/api/contact" },
+    { "source": "/api/services", "destination": "/api/services" },
+    { "source": "/api/reviews", "destination": "/api/reviews" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
